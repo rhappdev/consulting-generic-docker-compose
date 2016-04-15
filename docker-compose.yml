@@ -1,0 +1,33 @@
+version: "2"
+services:
+  www:
+    build: ./nginx
+    ports:
+      - 4001:80
+    restart: unless-stopped
+  jenkins:
+    image: jenkins:latest
+    volumes:
+      - /opt/jenkins:/var/jenkins_home
+    restart: unless-stopped
+    user: root
+  sonarqube:
+    image: sonarqube:latest
+    restart: unless-stopped
+    volumes:
+      - /opt/sonarqube/data:/opt/sonarqube/data
+      - /opt/sonarqube/extensions:/opt/sonarqube/extensions
+    user: root
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 4004:3000
+    restart: unless-stopped
+  influxdb:
+    build: ./influxdb
+    volumes:
+      - /opt/influxdb:/data
+    ports:
+      - 4002:2003/udp
+      - 4003:8086
+    restart: unless-stopped

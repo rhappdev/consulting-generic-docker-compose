@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <title>Siemens Integrations and Stats</title>
+    <style>
+    body {
+        width: 100%;
+    }
+
+    header {
+        width: 80%;
+        height: auto;
+        padding: 0 10%;
+    }
+
+    .header-styles {
+        line-height: 3em;
+        font-size: 1.3em;
+    }
+
+    .warapper {
+        width: 80%;
+        height: auto;
+        padding: 0 10%;
+    }
+
+    .right-column {
+        float: right;
+        width: 50%;
+    }
+
+    .left-column {
+        float: left;
+        width: 50%;
+    }
+
+    .box {
+        /*display: inline-block;*/
+        /*line-height: 5em;*/
+    }
+    .text {
+        margin-top: 6em;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <p class="header-styles">
+            <img src="./header_logo.jpeg" title="Logo" alt="Logo" width="300">
+            <span class="right-column">RHMAP CI Home</span>
+        </p>
+    </header>
+    <hr style="width: 80%; padding: 0% 10%;">
+    <div class="">
+        <section class="left-column">
+            <a href="http://jenkins.redhat.mobile:4001" class="box">
+                <div>
+                    <div class="left-column">
+                        <img src="./jenkins.png" title="Jenkins CI" alt="Jenkins CI">
+                    </div>
+                    <div class="right-column">
+                         <p class="text">Continuous Integration services for Siemens Projects</p>
+                     </div>
+                </div>
+            </a>
+            <hr style="width: 70%; padding: 0% 10%;">
+            <a href="http://sonarqube.redhat.mobile:4001" class="box">
+                <div>
+                    <div class="left-column">
+                        <img src="./sonarqube.png" title="SonarQube" alt="SonarQube">
+                    </div>
+                    <div class="right-column">
+                        <p class="text">Continuous Inspection of code quality for the Siemens Projects deployed in RHMAP.</p>
+                    </div>
+                </div>
+            </a>
+        </section>
+        <section class="right-column">
+            <a href="http://grafana.redhat.mobile:4001" class="box">
+                <div>
+                    <div class="left-column">
+                        <img src="./grafana.png" title="Grafana" alt="Grafana">
+                    </div>
+                    <div class="right-column">
+                        <p class="text">Open source tool collecting stats on Siemens Project deployed in RHMAP.</p>
+                    </div>
+                </div>
+            </a>
+            <hr style="width: 70%; padding: 0% 10%;">
+            <a href="http://influxdb.redhat.mobile:4001" class="box">
+                <div>
+                    <div class="left-column">
+                        <img src="./influxDB.png" title="Influx DB" alt="Influx DB">
+                    </div>
+                    <div class="right-column">
+                        <p class="text">Time Series Database solution</p>
+                    </div>
+                </div>
+            </a>
+        </section>
+    </div>
+</body>
+
+</html>
