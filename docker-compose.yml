@@ -5,29 +5,36 @@ services:
     ports:
       - 4001:80
     restart: unless-stopped
+
   jenkins:
     image: jenkins:latest
-    volumes:
-      - /opt/jenkins:/var/jenkins_home
     restart: unless-stopped
     user: root
   sonarqube:
     image: sonarqube:latest
     restart: unless-stopped
-    volumes:
-      - /opt/sonarqube/data:/opt/sonarqube/data
-      - /opt/sonarqube/extensions:/opt/sonarqube/extensions
     user: root
+    links:
+      - sonardb
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonardb:5432/sonar
+  sonardb:
+    image: postgres
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    restart: unless-stopped
+    volumes:
+      - /opt/sonardb:/var/lib/postgresql/data:rw
   grafana:
     image: grafana/grafana:latest
-    ports:
-      - 4004:3000
     restart: unless-stopped
+    volumes:
+      - /opt/grafana/grafana:/var/lib/grafana:rw
   influxdb:
     build: ./influxdb
     volumes:
       - /opt/influxdb:/data
     ports:
       - 4002:2003/udp
-      - 4003:8086
     restart: unless-stopped
