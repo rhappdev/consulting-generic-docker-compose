@@ -3,43 +3,26 @@ services:
   www:
     build: ./nginx
     ports:
-      - 4001:80
+      - 80:80
     restart: unless-stopped
-
-  jenkins:
-    image: jenkins:latest
-    restart: unless-stopped
-    user: root
-    volumes:
-      - /opt/jenkins:/var/jenkins_home
-  sonarqube:
-    image: sonarqube:latest
-    restart: unless-stopped
-    user: root
-    links:
-      - sonardb
-    environment:
-      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonardb:5432/sonar
-    volumes:
-      - /opt/sonarqube/data:/opt/sonarqube/data
-      - /opt/sonarqube/extensions:/opt/sonarqube/extensions
-  sonardb:
-    image: postgres
-    environment:
-      - POSTGRES_USER=sonar
-      - POSTGRES_PASSWORD=sonar
-    restart: unless-stopped
-    volumes:
-      - /opt/sonardb:/var/lib/postgresql/data:rw
+    logging:
+      options:
+        max-size: 10m
   grafana:
     image: grafana/grafana:latest
     restart: unless-stopped
     volumes:
-      - /opt/grafana/grafana:/var/lib/grafana:rw
+      - /rhmap/grafana/grafana:/var/lib/grafana:rw
+    logging:
+      options:
+        max-size: 10m
   influxdb:
     build: ./influxdb
     volumes:
-      - /opt/influxdb:/data
+      - /rhmap/influxdb:/data
     ports:
-      - 4002:2003/udp
+      - 2003:2003/udp
     restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
